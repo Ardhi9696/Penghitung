@@ -1,3 +1,6 @@
+import com.android.build.api.dsl.ApplicationExtension
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -5,11 +8,11 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-android {
+
+
+extensions.configure<ApplicationExtension> {
     namespace = "com.afterhoursstack.penghitung"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.afterhoursstack.penghitung"
@@ -22,7 +25,7 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -30,10 +33,12 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     buildFeatures {
         compose = true
     }

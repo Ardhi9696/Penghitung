@@ -1,4 +1,6 @@
 package com.afterhoursstack.penghitung.feature_counter.presentation.state
 
-class CounterUiEvent {
+sealed class CounterUiEvent {
+    object OnIncrement : CounterUiEvent()
+    object OnDecrement : CounterUiEvent()
 }
